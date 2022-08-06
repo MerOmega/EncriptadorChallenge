@@ -8,20 +8,24 @@
     <link rel="stylesheet" href="src/style.css">
     </head>
 <body>
-    <div class="container">
-        <div class="row g-3 position-relative">
-            <div class="col text-center">
+    <div class="container position-relative">
+        <div class="position-relative text-center">
+            <div>
                 <form >
-                    <input type="text" name="text-field">
+                    <textarea class="text-field" name="" id="" cols="30" rows="10" placeholder="Escriba aqui"></textarea>
                     <div class="buttons">
-                        <button type="submit" class="btn-primary" >Encryptar</button>
-                        <input type="submit" value="Desencryptar">
+                        <input type="submit" class="btn btn-primary" value="Encriptar">
+                        <br>
+                        <input type="submit" class="btn btn-light" value="Desencryptar">
                     </div>
                 </form>
             </div>
-            <div class="col text-center">
-                <span>Texto</span>
+            <div class="result-container">
+                <div class="col text-center" id="text-result">
+                    <textarea readonly id="text-result" cols="30" rows="10">Texto</textarea>
+                </div>
             </div>
+            
         </div>
         
     </div>
