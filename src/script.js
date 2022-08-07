@@ -7,6 +7,12 @@ const vocal = /([aeiou])+/g;
 //matchea cualquier consonantes (cualquier rango de NO vocales) .Cualquier caracter |O string especifico
 const desc = /(?![aieou]).|(ai|enter|imes|ober|ufat)/g;
 
+async function myData(){
+    let response = await fetch('./jsonfile/deencrypt.json');
+    return response.json();
+}
+
+
 function cifrar(){
     let cypher="";   
     let arr = text.value.toLowerCase().split("");
@@ -27,15 +33,10 @@ function cifrar(){
 }
 
 
-const descifrar=  ()=>{
+const descifrar= async ()=>{
     let cypher="";
-
-    let map = new Map();
-    map.set("ai","a");
-    map.set("enter","e");
-    map.set("imes","i");
-    map.set("ober","o");
-    map.set("ufat","u");
+    let map = new Map(Object.entries(await myData()));
+    console.log(map);
     let match=text.value.match(desc);
     match.forEach(data=>{
         if(map.has(data)){
@@ -44,7 +45,8 @@ const descifrar=  ()=>{
             cypher+=data;
         }
     });
-    return cypher
+    return cypher;
+
 }
 
 buttonEncrypt.addEventListener("click",e=>{
@@ -54,5 +56,6 @@ buttonEncrypt.addEventListener("click",e=>{
 
 dencryptButton.addEventListener("click",e=>{
     e.preventDefault();
-    textResult.textContent=descifrar();
+    descifrar()
+    .then(data=>textResult.textContent=data);
 })
