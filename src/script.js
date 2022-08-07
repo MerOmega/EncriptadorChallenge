@@ -4,8 +4,10 @@ let buttonEncrypt = document.getElementById("encrypt");
 let dencryptButton = document.getElementById("dencrypt");
 
 const vocal = /([aeiou])+/g;
+//matchea cualquier consonantes (cualquier rango de NO vocales) .Cualquier caracter |O string especifico
+const desc = /(?![aieou]).|(ai|enter|imes|ober|ufat)/g;
 
-function myValue(){
+function cifrar(){
     let cypher="";   
     let arr = text.value.toLowerCase().split("");
     arr.forEach(data => {
@@ -24,12 +26,33 @@ function myValue(){
     return cypher;
 }
 
+
+const descifrar=  ()=>{
+    let cypher="";
+
+    let map = new Map();
+    map.set("ai","a");
+    map.set("enter","e");
+    map.set("imes","i");
+    map.set("ober","o");
+    map.set("ufat","u");
+    let match=text.value.match(desc);
+    match.forEach(data=>{
+        if(map.has(data)){
+            cypher+=map.get(data)
+        }else{
+            cypher+=data;
+        }
+    });
+    return cypher
+}
+
 buttonEncrypt.addEventListener("click",e=>{
     e.preventDefault();
-    textResult.textContent=myValue();
+    textResult.textContent=cifrar();
 });
 
 dencryptButton.addEventListener("click",e=>{
     e.preventDefault();
-    console.log("Desencryptar");
+    textResult.textContent=descifrar();
 })
