@@ -10,27 +10,41 @@ body{
     background: rgb(0,90,167);
     background: linear-gradient(180deg, rgba(0,90,167,0.44021358543417366) 0%, rgba(243,242,243,1) 16%);
 }
-.text-field{
-    background: transparent;
-    border: transparent;
-    font-family: 'Mukta',sans-serif;
-    font-weight: bold;
-    font-size: 1.3em;
-    width: 100%;
-}
 
 .text-field::-webkit-scrollbar{
-    
     display: none;
 }
 
 #text-result{
+    background-color: transparent;
     border:1px solid rgba(0, 0, 0, 0);
     width: 100%;
 }
+#text-result::-webkit-scrollbar{
+    display: none;
+}
 
-@media screen and (min-width:320px) {
+
+@media (min-width:641) {
+    .container{
+        display: flex;
+        flex-direction: row;
+        background-color: yellowgreen;
+    }
+}
+
+@media only screen and (min-width:320px) {
    
+    .text-field{
+        background: transparent;
+        border: transparent;
+        outline: none;
+        font-family: 'Mukta',sans-serif;
+        font-weight: bold;
+        font-size: 1.3em;
+        width: 100%;
+    }
+
     .container{
         padding-top: 5%;
     }
