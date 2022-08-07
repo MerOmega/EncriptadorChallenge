@@ -21,14 +21,17 @@ function getValue(map,val){
     }
 }
 
-const cifrar=async()=>{
+const cifrar=async(text)=>{
     let cypher="";   
-    let arr = text.value.toLowerCase().split("");
+    let arr = text.toLowerCase().split("");
     let map = new Map(Object.entries(await myData('./jsonfile/deencrypt.json')));
     arr.forEach(data => {
             if(vocal.test(data)){
                 cypher+=getValue(map,data);
-        }else{
+        }if(data=="\n"){
+            cypher+=" ";
+        }
+        else{
             cypher+=data;
         }
     });
@@ -53,14 +56,21 @@ const descifrar= async ()=>{
 
 buttonEncrypt.addEventListener("click",e=>{
     e.preventDefault();
-    cifrar()
-    .then(data=>textResult.textContent=data);
+    let textInside = text.value.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    textInside=textInside.replace(/[^a-zA-Z0-9 ]/g, '');
+    if(text!=null && text.value!=""){
+        cifrar(textInside)
+        .then(data=>textResult.textContent=data);
+    }
+    
 });
 
 dencryptButton.addEventListener("click",e=>{
     e.preventDefault();
-    descifrar()
-    .then(data=>textResult.textContent=data);
+    if(text!=null && text.value!=""){
+        descifrar()
+        .then(data=>textResult.textContent=data);
+    }
 })
 
 copyButton.addEventListener("click",async ()=>{
